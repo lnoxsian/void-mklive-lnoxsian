@@ -76,6 +76,8 @@ build_variant() {
     A11Y_PKGS="espeakup void-live-audio brltty"
     PKGS="dialog cryptsetup lvm2 mdadm void-docs-browse xtools-minimal xmirror chrony $A11Y_PKGS $GRUB_PKGS"
     XORG_PKGS="xorg-minimal xorg-input-drivers xorg-video-drivers setxkbmap xauth font-misc-misc terminus-font dejavu-fonts-ttf orca"
+    EXTRA_PKGS="chromium alacritty fish-shell"
+    SERVICES_X="chronyd" # removed sshd no need for x11 system
     SERVICES="sshd chronyd"
 
     LIGHTDM_SESSION=''
@@ -100,8 +102,8 @@ build_variant() {
             LIGHTDM_SESSION=mate
         ;;
         cinnamon)
-            PKGS="$PKGS $XORG_PKGS lightdm lightdm-gtk3-greeter cinnamon gnome-keyring colord gnome-terminal gvfs-afc gvfs-mtp gvfs-smb udisks2 firefox"
-            SERVICES="$SERVICES dbus lightdm NetworkManager polkitd"
+            PKGS="$PKGS $XORG_PKGS $EXTRA_PKGS lightdm lightdm-gtk3-greeter cinnamon gnome-keyring colord gvfs-afc gvfs-mtp gvfs-smb udisks2"
+            SERVICES="$SERVICES_X dbus lightdm NetworkManager polkitd"
             LIGHTDM_SESSION=cinnamon
         ;;
         gnome)
